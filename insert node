@@ -1,0 +1,91 @@
+Recursive approach
+
+// Function to insert a node in a BST.
+
+/*
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* insert(Node* node, int key) {
+
+        // Your code goes here
+        
+        if(node==NULL){
+            return new Node(key);
+        }
+        else if(node->data > key){
+            node->left=insert(node->left,key);
+        }
+        else if(node->data < key){
+            node->right=insert(node->right,key);
+        }
+        return node;
+    }
+};
+Time complexity: O(h)
+Space complexity:O(h)
+
+Iterative approach
+
+// Function to insert a node in a BST.
+
+/*
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* insert(Node* node, int key) {
+
+        // Your code goes here
+        Node * temp = new Node(key);
+        Node * parent = NULL;
+        Node * curr = node;
+        
+        while(curr!=NULL){
+            parent=curr;
+            if(curr->data > key){
+                curr=curr->left;
+            }
+            else if(curr->data < key){
+                curr=curr->right;
+            }
+            else
+                return node;
+        }
+            
+        if(parent==NULL)
+            return temp;
+        
+        if(parent->data > key)
+            return parent->left=temp;
+        
+        else if(parent->data < key)
+            return parent->right=temp;
+        
+        return node;
+        
+    }
+};
+Time complexity: O(h)
+Space complexity: O(1)
