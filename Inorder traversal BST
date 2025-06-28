@@ -1,0 +1,38 @@
+Recursive approach
+
+// User function Template for C++
+void guide(struct Node* node, vector<int>& res){
+    if(node==NULL){
+        return;
+    }
+    guide(node->left,res);
+    res.push_back(node->data);
+    guide(node->right,res);
+}
+vector<int> inOrder(struct Node* node) {
+    // Your code here
+    vector<int> res;
+    guide(node,res);
+    return res;
+}
+
+Iterative approach
+
+// User function Template for C++
+vector<int> inOrder(struct Node* node) {
+    // Your code here
+    vector<int> res;
+    stack<Node*> st;
+    Node* curr = node;
+    while(curr!=NULL ||!st.empty()){
+        while(curr!=NULL){
+            st.push(curr);
+            curr=curr->left;
+        }
+        curr=st.top();
+        st.pop();
+        res.push_back(curr->data);
+        curr=curr->right;
+    }
+    return res;
+}
