@@ -17,3 +17,31 @@ vector<int> preOrder(struct Node* node) {
     return res;
 }
 
+Iterative approach
+
+// User function Template for C++
+
+vector<int> preOrder(struct Node* node) {
+    // Your code here
+    vector<int> res;
+    if(node==NULL){
+        return res;
+    }
+    stack <Node*> st;
+    st.push(node);
+    
+    while(!st.empty()){
+        Node* curr =st.top();
+        st.pop();
+        res.push_back(curr->data);
+        if(curr->right!=NULL){
+            st.push(curr->right);
+        }
+        if(curr->left!=NULL){
+            st.push(curr->left);
+        }
+    }
+    return res;
+}
+
+
