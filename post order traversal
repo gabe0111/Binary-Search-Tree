@@ -1,0 +1,19 @@
+Recursive approach
+
+// User function Template for C++
+void guide(struct Node* node, vector<int> &res){
+    if(node==NULL){
+        return;
+    }
+    guide(node->left,res);
+    guide(node->right,res);
+    res.push_back(node->data);
+}
+vector<int> postOrder(struct Node* node) {
+    // Your code here
+    vector<int> res;
+    guide(node,res);
+    return res;
+}
+
+
